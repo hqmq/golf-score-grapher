@@ -1,3 +1,5 @@
+require 'csv'
+
 class GamesController < ApplicationController
   # GET /games
   # GET /games.json
@@ -25,7 +27,7 @@ class GamesController < ApplicationController
   # GET /games/new.json
   def new
     @game = Game.new
-
+    flash[:notice] = "Test"
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @game }
@@ -40,8 +42,16 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new(params[:game])
+    lines = params[:file].read.split("\n")
+    first = lines.shift
+    second = lines.shift
 
+    first = CSV.parse_line(first)
+    @game = Game.new
+    @game.name = first.first
+    @game.played_at = first.last
+    @game.scores = lines.join("\n")
+    
     respond_to do |format|
       if @game.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }

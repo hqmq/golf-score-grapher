@@ -1,3 +1,17 @@
 // Place all the styles related to the games controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin rounded {
+  $radius: 10px;
+
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+#filedrop{
+	height: 120px;
+	width: 160px;
+	border: 3px dashed grey;
+	@include rounded;
+}
