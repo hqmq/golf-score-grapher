@@ -7,7 +7,8 @@
 
 <p>
   <b>Played at:</b>
-  <%= @game.played_at %>
+  <%= @game.played_at.strftime('%b %d %Y %l:%M %P') %>
+  ( <%= time_ago_in_words(@game.played_at) %> )
 </p>
 
 <p>

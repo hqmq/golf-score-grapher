@@ -23,22 +23,6 @@ class GamesController < ApplicationController
     end
   end
 
-  # GET /games/new
-  # GET /games/new.json
-  def new
-    @game = Game.new
-    flash[:notice] = "Test"
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @game }
-    end
-  end
-
-  # GET /games/1/edit
-  def edit
-    @game = Game.find(params[:id])
-  end
-
   # POST /games
   # POST /games.json
   def create

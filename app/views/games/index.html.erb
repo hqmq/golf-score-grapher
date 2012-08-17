@@ -9,8 +9,8 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Played at</th>
+    <th>Course</th>
+    <th>When</th>
     <th></th>
     <th></th>
   </tr>
@@ -18,7 +18,7 @@
 <% @games.each do |game| %>
   <tr>
     <td><%= game.name %></td>
-    <td><%= game.played_at %></td>
+    <td><%= game.played_at.strftime('%b %d %Y %l:%M %P') %></td>
     <td><%= link_to 'Show', game %></td>
     <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
@@ -26,5 +26,3 @@
 </table>
 
 <br />
-
-<%= link_to 'New Game', new_game_path %>
