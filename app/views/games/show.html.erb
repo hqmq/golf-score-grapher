@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-
+<%= link_to 'Back', games_path %>
 <p>
   <b>Name:</b>
   <%= @game.name %>
@@ -8,31 +7,51 @@
 <p>
   <b>Played at:</b>
   <%= @game.played_at.strftime('%b %d %Y %l:%M %P') %>
-  ( <%= time_ago_in_words(@game.played_at) %> )
+  ( <%= time_ago_in_words(@game.played_at) %> ago )
 </p>
 
-<p>
-  <b>Scores:</b>
-  <table>
-		<tr>
-			<th>Player</th>
-			<% @game.scores_hash.first.select{|key,val| key =~ /^H\d+/ }.each do |hole,score|%>
-				<th>
-					<%= hole %>
-				</th>
-			<% end %>
-			<th>Total</th>
-		</tr>
-		<% @game.scores_hash.each do |h| %>
-		<tr>
-			<td><%= h["Player"] %></td>
-				<% @game.scores_hash.first.select{|key,val| key =~ /^H\d+/ }.each do |hole,score|%>
-					<td><%= h[hole]%></td>
-				<% end %>
-			<td><%= h["TOT"]%></td>
-		</tr>
+
+ <table class="span12">
+	<tr>
+		<th>Player</th>
+		<% @game.holes.each do |hole|%>
+			<th>
+				<%= hole %>
+			</th>
 		<% end %>
-	</table>
-</p>
+		<th>Total</th>
+	</tr>
+	<% @game.scores_hash.each_with_index do |h,idx| %>
+	<tr style="color: <%= Game.colors[idx] %>">
+		<td><%= h["Player"] %></td>
+			<% @game.holes.each do |hole|%>
+				<td><%= h[hole]%></td>
+			<% end %>
+		<td><%= h["TOT"]%></td>
+	</tr>
+	<% end %>
+</table>
 
-<%= link_to 'Back', games_path %>
+<div id="graph">
+</div>
+<style>
+#graph{
+	width:800px;
+	height:400px;
+}
+</style>
+<script>
+	r = Raphael("graph");
+	holes = <%= 1.upto(@game.holes.size).to_a.to_json.html_safe %>;
+	scores = <%= @game.all_scores.to_json.html_safe %>;
+	var options = { nostroke: false, axis: "0 0 1 1", symbol: "circle", smooth: false };
+	r.linechart(10, 10, 780, 380, holes, scores, options).hoverColumn(function () {
+	                    this.tags = r.set();
+
+	                    for (var i = 0, ii = this.y.length; i < ii; i++) {
+	                        this.tags.push(r.tag(this.x, this.y[i], this.values[i], 160, 10).insertBefore(this).attr([{ fill: "#fff" }, { fill: this.symbols[i].attr("fill") }]));
+	                    }
+	                }, function () {
+	                    this.tags && this.tags.remove();
+	                });
+</script>
