@@ -12,9 +12,26 @@
 
 <p>
   <b>Scores:</b>
-  <%= @game.scores %>
+  <table>
+		<tr>
+			<th>Player</th>
+			<% @game.scores_hash.first.select{|key,val| key =~ /^H\d+/ }.each do |hole,score|%>
+				<th>
+					<%= hole %>
+				</th>
+			<% end %>
+			<th>Total</th>
+		</tr>
+		<% @game.scores_hash.each do |h| %>
+		<tr>
+			<td><%= h["Player"] %></td>
+				<% @game.scores_hash.first.select{|key,val| key =~ /^H\d+/ }.each do |hole,score|%>
+					<td><%= h[hole]%></td>
+				<% end %>
+			<td><%= h["TOT"]%></td>
+		</tr>
+		<% end %>
+	</table>
 </p>
 
-
-<%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

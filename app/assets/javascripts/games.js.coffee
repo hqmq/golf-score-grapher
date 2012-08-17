@@ -1,6 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
 	$('#filedrop').filedrop
 		url: "/games.json"
@@ -9,5 +6,17 @@ $ ->
 		maxfiles: 1
 		maxfilesize: 1
 		uploadFinished: (i, file, response, time)-> 
-			console.log(response)
+			d = $('<div class="alert" data-dismiss="alert" />')
+			if response.id
+				d.addClass('alert-success')
+				d.text('Created')
+				window.location.reload()
+			else
+				d.addClass('alert-error')
+				errors = for property, errors of response
+					"#{property} - #{errors}"
+				d.html( errors.join("<br />") )
+			$('body').prepend( d )
+		error: (err,file)->
+			#blah
 			

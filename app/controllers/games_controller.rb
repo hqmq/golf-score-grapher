@@ -49,7 +49,7 @@ class GamesController < ApplicationController
     first = CSV.parse_line(first)
     @game = Game.new
     @game.name = first.first
-    @game.played_at = first.last
+    @game.played_at = DateTime.strptime(first.last, "%m/%d/%y %I:%M %P")
     @game.scores = lines.join("\n")
     
     respond_to do |format|
