@@ -15,3 +15,8 @@
 //= require jquery.pjax
 //= require bootstrap
 //= require_tree .
+$(function(){
+	$('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])').pjax('[data-pjax-container]');
+	$('[data-pjax-container]').on('pjax:start', function() { $('#loading').show() })
+		.on('pjax:end',   function() { $('#loading').hide() });
+});

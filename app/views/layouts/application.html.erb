@@ -24,7 +24,8 @@
       <div class="container">
         <div class="content">
            <div class="row">
-            <div class="span12">
+						<div id='loading' style='display:none'><img src='/assets/spinner.gif'></div>
+            <div class="span12" data-pjax-container>
               <%= render 'layouts/messages' %>
               <%= yield %>
             </div>
