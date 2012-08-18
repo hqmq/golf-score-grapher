@@ -1,4 +1,5 @@
 $ ->
+	$('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])').pjax('[data-pjax-container]')
 	$('#filedrop').filedrop
 		url: "/games.json"
 		paramname: "file"
