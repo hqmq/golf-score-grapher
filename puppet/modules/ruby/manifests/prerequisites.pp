@@ -1,7 +1,6 @@
 class ruby::prerequisites {
   package { "make":
 		ensure => present,
-		require => Class[remi]
 	}
 	package { "gcc":
 		ensure => present,
@@ -21,7 +20,7 @@ class ruby::prerequisites {
 	package { "readline-devel":
 		ensure => present,
 	}
-	package { "curl-devel":
+	package { "libcurl-devel":
 		ensure => present,
 	}
 	package { "expat-devel":
@@ -33,7 +32,7 @@ class ruby::prerequisites {
 	package { "ncurses-devel":
 		ensure => present,
 	}
-	package { "sqlite3-devel":
+	package { "sqlite-devel":
 		ensure => present,
 	}
 	package { "mysql-devel":
