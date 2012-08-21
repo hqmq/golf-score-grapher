@@ -51,6 +51,10 @@ class ruby {
     creates => "/usr/local/bin/ruby",
     require => Exec["unpack_ruby"]
   }
-  
 
+  exec{ "install_bundler":
+    command => "gem install bundler",
+    path => $path,
+    unless => "gem which bundler",
+  }
 }
