@@ -8,6 +8,7 @@ gem 'rails', '3.2.8.rc2'
 gem 'sqlite3'
 gem 'narray', '~> 0.6.0.1'
 gem 'pjax_rails', '~> 0.3.2'
+gem 'therubyracer', '~> 0.10.2'
 
 
 # Gems used only for assets and not required
