@@ -1,9 +1,9 @@
 ## Ruby Module
 ## Installs ruby from source for centos6 boxes
 
-include ruby::prerequisites
-
 class ruby {
+  include ruby::prerequisites
+  
   exec{ "download_yaml":
     command => "wget http://pyyaml.org/download/libyaml/yaml-0.1.4.tar.gz",
     cwd => "/usr/src",
@@ -53,8 +53,8 @@ class ruby {
   }
 
   exec{ "install_bundler":
-    command => "gem install bundler",
-    path => $path,
-    unless => "gem which bundler",
+    command => "/usr/local/bin/gem install bundler",
+    unless => "/usr/local/bin/gem which bundler",
+    require => Exec["make_ruby"],
   }
 }
