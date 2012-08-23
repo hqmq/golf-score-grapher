@@ -30,6 +30,11 @@ group :development, :test do
   gem 'minitest-rails', '~> 0.1.3'
 end
 
+group :test do
+  gem "cucumber-rails", '~> 1.3'
+  gem 'minitest-reporters'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
