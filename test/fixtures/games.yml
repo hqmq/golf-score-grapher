@@ -1,0 +1,12 @@
+t1:
+  name: trafalga
+  played_at: 2012-01-01 12:00:00
+  scores: 
+t2:
+  name: trafalg
+  played_at: 2012-01-02 12:00:00
+  scores: 
+t3:
+  name: trafalga
+  played_at: 2012-01-03 12:00:00
+  scores: 
