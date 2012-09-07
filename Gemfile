@@ -27,13 +27,11 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
-  gem 'minitest-rails', '~> 0.1.3'
+  gem "rspec-rails"
 end
 
 group :test do
-  gem "cucumber-rails", '~> 1.3'
   gem "database_cleaner", "~> 0.8"
-  gem 'minitest-reporters'
 end
 
 # To use ActiveModel has_secure_password
