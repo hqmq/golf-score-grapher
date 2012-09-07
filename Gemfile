@@ -27,11 +27,10 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
-  gem "rspec-rails"
-end
-
-group :test do
+  gem "rspec-rails", "~> 2.8"
+  gem "capybara", "~> 1.1"
   gem "database_cleaner", "~> 0.8"
+  gem "cucumber-rails", "~> 1.3"
 end
 
 # To use ActiveModel has_secure_password
