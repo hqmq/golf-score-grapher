@@ -20,6 +20,36 @@ module GamesHelper
     	lines.symbols.attr({ r: 6 });
     </script>".html_safe
   end
+
+  def linegraph_google(dom_id, game)
+    data_grid = game.player_averages
+      .map{ |ps| [ps[:player]].concat(ps[:averages]) }
+      .transpose.each_with_index{ |row, idx| row.unshift(idx) }
+    js = "
+      <script type='text/javascript'>
+        var d = $('\##{dom_id}');
+        
+        var dc = function(){
+          d.empty();
+          var data = google.visualization.arrayToDataTable(#{data_grid.to_json});
+          var options = {
+            curveType: 'function',
+            width: 1170,
+            height: 400
+          };
+
+          var chart = new google.visualization.LineChart(d.get(0));
+          chart.draw(data, options);
+        }
+        if( google.visualization ) {
+          $(function(){ dc(); });
+        } else {
+          google.load('visualization', '1', {packages:['corechart']});
+          google.setOnLoadCallback(dc);
+        }
+      </script>
+    ".html_safe
+  end
   
   def legend_colors
     ["#2f69bf","#a2bf2f","#bf5a2f","#bfa22f","#772fbf","#bf2f2f"]

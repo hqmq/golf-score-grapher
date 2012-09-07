@@ -11,38 +11,37 @@
 </p>
 
 <div>
-	<table class="span12">
-		<tr>
-			<th>Player</th>
-			<% @game.holes.each do |hole|%>
-				<th>
-					<%= hole %>
-				</th>
-			<% end %>
-			<th>Total</th>
-		</tr>
-		<% @game.scores_hash.each_with_index do |h,idx| %>
-		<tr style="color: <%= legend_colors[idx] %>">
-			<td><%= h["Player"] %></td>
-				<% @game.holes.each do |hole|%>
-					<td><%= h[hole]%></td>
-				<% end %>
-			<td><%= h["TOT"]%></td>
-		</tr>
-		<% end %>
-	</table>
+  <table class="span12">
+    <tr>
+      <th>Player</th>
+      <% @game.holes.each do |hole|%>
+        <th>
+          <%= hole %>
+        </th>
+      <% end %>
+      <th>Total</th>
+    </tr>
+    <% @game.scores_hash.each_with_index do |h,idx| %>
+    <tr style="color: <%= legend_colors[idx] %>">
+      <td><%= h["Player"] %></td>
+        <% @game.holes.each do |hole|%>
+          <td><%= h[hole]%></td>
+        <% end %>
+      <td><%= h["TOT"]%></td>
+    </tr>
+    <% end %>
+  </table>
 </div>
 <style>
 table{
-	padding-bottom: 50px;
+  padding-bottom: 50px;
 }
 .linegraph{
-	padding-bottom: 100px;
+  padding-bottom: 100px;
 }
 </style>
-<h3>running score vs average</h3>
-<%= linegraph(1170,400, 1.upto(@game.num_holes).to_a, @game.all_average_scores) %>
-<h3>running score</h3>
-<%= linegraph(1170,400, 1.upto(@game.num_holes).to_a, @game.all_running_totals) %>
-<h3>score on each hole</h3>
-<%= linegraph(1170,400, 1.upto(@game.num_holes).to_a, @game.all_scores) %>
+<h3>Running Totals vs Average</h3>
+<div id="average" class="span12 pager">
+  <img src="/assets/spinner.gif" />
+</div>
+<%= linegraph_google("average", @game) %>
