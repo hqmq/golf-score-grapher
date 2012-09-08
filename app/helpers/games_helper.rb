@@ -52,6 +52,6 @@ module GamesHelper
   end
   
   def legend_colors
-    ["#2f69bf","#a2bf2f","#bf5a2f","#bfa22f","#772fbf","#bf2f2f"]
+    ["#3366cc","#dc3912","#ff9900","#109618","#990099","#0099c6","#dd4477","#66aa00"]
   end
 end

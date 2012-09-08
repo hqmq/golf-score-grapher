@@ -19,7 +19,7 @@
 <tbody class="games">
 <% @games.each do |game| %>
   <tr class="game">
-    <td><%= game.name %></td>
+    <td class="name"><%= game.name %></td>
     <td><%= game.played_at.strftime('%b %d %Y %l:%M %P') %></td>
     <td><%= link_to 'Show', game %></td>
     <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>

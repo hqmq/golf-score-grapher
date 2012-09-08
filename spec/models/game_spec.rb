@@ -7,4 +7,6 @@ describe Game do
       Game.new.should be_an_instance_of(Game)
     }.should_not raise_exception
   end
+
+  describe "#"
 end
