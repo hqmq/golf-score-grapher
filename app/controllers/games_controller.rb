@@ -28,15 +28,7 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    lines = params[:file].read.split("\n")
-    first = lines.shift
-    second = lines.shift
-
-    first = CSV.parse_line(first)
-    @game = Game.new
-    @game.name = first.first
-    @game.played_at = DateTime.strptime(first.last, "%m/%d/%y %I:%M %P")
-    @game.scores = lines.join("\n")
+    @game = Game.build_from_csv(params[:file])
     
     respond_to do |format|
       if @game.save

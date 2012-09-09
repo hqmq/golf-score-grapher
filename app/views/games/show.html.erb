@@ -21,13 +21,13 @@
       <% end %>
       <th>Total</th>
     </tr>
-    <% @game.scores_hash.each_with_index do |h,idx| %>
+    <% @game.player_scores.each_with_index do |player_score,idx| %>
     <tr style="color: <%= legend_colors[idx] %>">
-      <td><%= h["Player"] %></td>
-        <% @game.holes.each do |hole|%>
-          <td><%= h[hole]%></td>
+      <td><%= player_score[:player] %></td>
+        <% player_score[:scores].each do |score|%>
+          <td><%= score %></td>
         <% end %>
-      <td><%= h["TOT"]%></td>
+      <td><%= player_score[:scores].inject(0){|sum,score| sum += score } %></td>
     </tr>
     <% end %>
   </table>

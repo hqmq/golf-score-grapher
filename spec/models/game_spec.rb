@@ -1,22 +1,23 @@
 require 'spec_helper'
 
 describe Game do
-  fixtures :games
+  fixtures :games, :players, :scores
   it "can be created" do
     ->{
       Game.new.should be_an_instance_of(Game)
     }.should_not raise_exception
   end
 
-  describe "#scores_hash" do
-  	subject{games(:g1).scores_hash}
-  	it "should return a hash for each player" do
-  		subject.size.should == 5
-  		me_hash = subject.select{ |h| h["Player"] == "Me" }
-  		me_hash.size.should == 1
-  		me_hash = me_hash.first
-  		me_hash["TOT"].to_i.should == 49
-  	end
+  it "can be created from a CSV file"
+
+  it "a list of holes" do
+    game = games(:g1)
+    game.holes.should == [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+    game.num_holes.should == 18
+
+    game = games(:g3)
+    game.holes.should == [1,2,3,4,5,6,7,8,9]
+    game.num_holes.should == 9
   end
 
   describe "#player_scores" do
