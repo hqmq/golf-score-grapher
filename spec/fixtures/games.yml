@@ -1,0 +1,15 @@
+g1:
+  id: 1
+  name: trafalga1
+  played_at: 2012-01-01 12:00:00
+  num_holes: 18
+g2:
+  id: 2
+  name: trafalga2
+  played_at: 2012-01-03 12:00:00
+  num_holes: 18
+g3:
+  id: 3
+  name: trafalga3
+  played_at: 2012-01-02 12:00:00
+  num_holes: 9

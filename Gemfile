@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'narray', '~> 0.6.0.1'
 gem 'pjax_rails', '~> 0.3.2'
 gem 'newrelic_rpm'
+gem 'therubyracer', '~> 0.10.2'
 
 
 # Gems used only for assets and not required
@@ -25,6 +26,16 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+group :development, :test do
+  gem "rspec-rails", "~> 2.8"
+  gem "capybara", "~> 1.1"
+  gem "database_cleaner", "~> 0.8"
+end
+
+group :test do
+  gem "cucumber-rails", "~> 1.3"
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

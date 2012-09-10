@@ -2,42 +2,71 @@ require 'csv'
 require 'narray'
 
 class Game < ActiveRecord::Base
-  attr_accessible :name, :played_at, :scores
+  attr_accessible :name, :played_at, :num_holes
   
-  validates_presence_of [:name, :played_at, :scores]
+  validates_presence_of [:name, :played_at]
   validates_uniqueness_of :played_at, :message => "duplicate value"
-  
-  def scores_hash
-    @scores_hash ||= CSV.parse( self.scores, :headers => true).map {|rec| rec.to_hash }.sort_by{|obj| [obj["TOT"], obj["Player"]]}
-    @scores_hash
+
+  has_many :scores
+
+  def self.build_from_csv(file)
+    lines = file.read.split("\n")
+    first = lines.shift
+    second = lines.shift
+    first = CSV.parse_line(first)
+    game = Game.new
+    game.name = first.first
+    game.played_at = DateTime.strptime(first.last, "%m/%d/%y %I:%M %P")
+    game.num_holes = CSV.parse_line(lines.first).size - 4
+    game.scores = CSV.parse(lines.join("\n"), :headers => true)
+      .map{ |csv_record| Score.build_from_csv(csv_record) }
+    game
   end
-  
-  def all_scores
-    scores_hash.map{|rec| rec.select{|key,val| key =~ /^H\d+/}.map{|hole, score| score} }
+
+  def player_scores
+    scores.sort_by do |score|
+      score.total
+    end.map do |score| 
+      score.to_basic_hash
+    end
   end
-  
-  def all_running_totals
-    scores_hash.map do |rec| 
-      total = 0
-      rec.select{|key,val| key =~ /^H\d+/}.map{|hole, score| total += score.to_i }
+
+  def player_totals
+    player_scores.map do |player_score|
+      running_total = 0
+      player_score[:totals] = player_score[:scores].map{ |score| running_total += score; running_total }
+      player_score
+    end
+  end
+
+  def running_average
+    arr = NArray.int(num_holes)
+    totals = player_totals
+    holes.map do |hole_num| 
+      totals.map do |player_total|
+        player_total[:totals][hole_num-1]
+      end.inject(0){|sum, score| sum += score } / totals.size
     end
   end
   
   def all_average_scores
     holes = 0.upto(self.holes.size-1).to_a
     totals = all_running_totals
-    averages = NArray.int(num_holes) + holes.map{|i| totals.inject(0){|sum, scores| sum += scores[i]} / totals.size }
+    averages = running_average
     totals.map do |scores|
       na = NArray.int(num_holes) + scores
       (na - averages).to_a
     end
   end
-  
-  def holes
-    scores_hash.first.select{|key,val| key =~ /^H\d+/ }.map{|hole, score| hole}
+
+  def player_averages
+    player_totals.map do |player_score|
+      player_score[:averages] = ((NArray.int(num_holes) + player_score[:totals]) - running_average).to_a
+      player_score
+    end
   end
   
-  def num_holes
-    holes.size
+  def holes
+    1.upto(num_holes).to_a
   end
 end
