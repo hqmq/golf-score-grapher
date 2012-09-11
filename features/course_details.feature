@@ -7,3 +7,4 @@ Feature: Course Details Screen
     Then I should see a history of games played
     And I should see a calculated par for the course
     And I should see a graph of the par for the course
+    And I should see top 3 records

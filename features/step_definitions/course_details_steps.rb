@@ -15,3 +15,8 @@ end
 Then /^I should see a graph of the par for the course$/ do
   page.should have_selector(".calculated-par .graph")
 end
+
+Then /^I should see top (\d+) records$/ do |arg1|
+  page.should have_selector(".records")
+  page.all('.records .record').count.should == 3
+end
