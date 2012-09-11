@@ -1,4 +1,6 @@
 Golf::Application.routes.draw do
+  resources :courses
+
   resources :games
 
   # The priority is based upon order of creation:

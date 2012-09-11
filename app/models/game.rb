@@ -4,7 +4,8 @@ require 'narray'
 class Game < ActiveRecord::Base
   attr_accessible :name, :played_at, :num_holes
   
-  validates_presence_of [:name, :played_at]
+  belongs_to :course
+  validates_presence_of [:played_at, :course, :scores]
   validates_uniqueness_of :played_at, :message => "duplicate value"
 
   has_many :scores
@@ -15,7 +16,7 @@ class Game < ActiveRecord::Base
     second = lines.shift
     first = CSV.parse_line(first)
     game = Game.new
-    game.name = first.first
+    game.course = Course.find_or_create(first.first)
     game.played_at = DateTime.strptime(first.last, "%m/%d/%y %I:%M %P")
     game.num_holes = CSV.parse_line(lines.first).size - 4
     game.scores = CSV.parse(lines.join("\n"), :headers => true)

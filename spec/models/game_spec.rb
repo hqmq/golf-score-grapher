@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Game do
-  fixtures :games, :players, :scores
+  fixtures :courses, :games, :players, :scores
   it "can be created" do
     ->{
       Game.new.should be_an_instance_of(Game)
