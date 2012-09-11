@@ -4,7 +4,9 @@ end
 
 Then /^I should see a history of games played$/ do
   page.should have_selector(".history .games")
+  page.all('.history .game').count.should == 2
   page.should have_selector(".history .statistics")
+  page.find('.history .statistics .total').text.to_i.should == 2
 end
 
 Then /^I should see a calculated par for the course$/ do

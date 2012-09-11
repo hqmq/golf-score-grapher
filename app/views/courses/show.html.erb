@@ -1,10 +1,47 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Name:</b>
   <%= @course.name %>
 </p>
-
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<div class="row">
+  <h3>History</h3>
+  <div class="history span6">
+    <div class="row">
+      <div class="games span3">
+        <% @course.recent_games.each do |game| %>
+          <div class="game">
+            <%= link_to game.played_at.strftime('%b %d %Y %l:%M %P'), game_path(game) %>
+          </div>
+        <% end %>
+      </div>
+    
+      <table class="statistics span3">
+        <tr>
+          <th>Games Played</th>
+          <td class="total"><%= @course.games.count %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <h3>Calculated Par</h3>
+  <% calculated_par = @course.calculated_par %>
+  <div class="calculated-par span6">
+    <div class="row">
+      <table class="span6 table table-bordered">
+        <tr>
+          <% calculated_par.each_with_index do |par, idx| %>
+            <th><%= idx + 1%></th>
+          <% end %>
+        </tr>
+        <tr>
+          <% calculated_par.each do |par| %>
+            <td><%= par %></td>
+          <% end %>
+        </tr>
+      </table>
+      <div class="span6 graph" id="course-par-graph"></div>
+      <%= linegraph_calculated_par("course-par-graph", @course)%>
+    </div>
+  </div>
+</div>
