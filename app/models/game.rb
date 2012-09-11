@@ -49,16 +49,6 @@ class Game < ActiveRecord::Base
       end.inject(0){|sum, score| sum += score } / totals.size
     end
   end
-  
-  def all_average_scores
-    holes = 0.upto(self.holes.size-1).to_a
-    totals = all_running_totals
-    averages = running_average
-    totals.map do |scores|
-      na = NArray.int(num_holes) + scores
-      (na - averages).to_a
-    end
-  end
 
   def player_averages
     player_totals.map do |player_score|
