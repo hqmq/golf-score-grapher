@@ -45,3 +45,20 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <h3>Records</h3>
+  <div class="records span6">
+    <table class="table table-borders table-striped">
+      <tr>
+          <th>Total</th><th>Player</th><th>Date</th>
+      </tr>
+      <% @course.records.each do |course_record| %>
+        <tr class="record">
+          <td><%= course_record.total %></td>
+          <td><%= course_record.name %></td>
+          <td><%= course_record.date.strftime('%b %d %Y %l:%M %P') %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

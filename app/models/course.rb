@@ -26,4 +26,17 @@ class Course < ActiveRecord::Base
       (hole_scores.map(&:to_f).inject(&:+) / hole_scores.size).round
     end
   end
+  
+  def records
+    return @records unless @records.nil?
+    
+    @records = games.inject([]) do |list, game|
+      game.scores.inject(list) do |list, score|
+        list << CourseRecord.new( score.player, score, game )
+      end
+    end
+    
+    @records.sort_by!{ |record| record.sort_value }
+    @records = @records.slice(0..4)
+  end
 end

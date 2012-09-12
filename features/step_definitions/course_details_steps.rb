@@ -20,5 +20,5 @@ end
 
 Then /^I should see top (\d+) records$/ do |arg1|
   page.should have_selector(".records")
-  page.all('.records .record').count.should == 3
+  page.all('.records .record').count.should == arg1.to_i
 end

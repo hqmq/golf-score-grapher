@@ -16,3 +16,5 @@
 
 # Ignore Vagrant files
 /.vagrant
+
+.DS_Store
