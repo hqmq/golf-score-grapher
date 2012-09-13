@@ -11,7 +11,7 @@
 </p>
 
 <div>
-  <table class="span12 table-of-scores">
+  <table class="span12 table-of-scores table table-bordered table-striped">
     <tr>
       <th>Player</th>
       <% @game.holes.each do |hole|%>
@@ -32,14 +32,6 @@
     <% end %>
   </table>
 </div>
-<style>
-table{
-  padding-bottom: 50px;
-}
-.linegraph{
-  padding-bottom: 100px;
-}
-</style>
 <h3>Running Totals vs Average</h3>
 <div id="average" class="span12 pager">
   <img src="/assets/spinner.gif" />
