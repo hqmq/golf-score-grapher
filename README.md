@@ -1,6 +1,8 @@
 ## Golf Scores
 This is a simple app used for bragging rights around the office.
 
+http://golf.riesd.com/
+
 ### How to use
 ---
 * Use a simple android app to keep score (https://play.google.com/store/apps/details?id=com.mydroidsoft.myscorecard&hl=en)
