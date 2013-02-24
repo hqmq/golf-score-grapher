@@ -1,5 +1,5 @@
 require 'csv'
-require 'narray'
+require 'matrix'
 
 class Game < ActiveRecord::Base
   attr_accessible :name, :played_at, :num_holes
@@ -41,7 +41,6 @@ class Game < ActiveRecord::Base
   end
 
   def running_average
-    arr = NArray.int(num_holes)
     totals = player_totals
     holes.map do |hole_num| 
       totals.map do |player_total|
@@ -51,8 +50,10 @@ class Game < ActiveRecord::Base
   end
 
   def player_averages
+    avg_vector = Vector.elements(running_average)
     player_totals.map do |player_score|
-      player_score[:averages] = ((NArray.int(num_holes) + player_score[:totals]) - running_average).to_a
+      totals = Vector.elements(player_score[:totals])
+      player_score[:averages] = (totals - avg_vector).to_a
       player_score
     end
   end

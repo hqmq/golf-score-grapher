@@ -1,14 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8.rc2'
+gem 'rails', '3.2.12'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
-gem 'narray', '~> 0.6.0.1'
+gem 'jdbc-sqlite3'
+gem 'activerecord-jdbcsqlite3-adapter'
+#gem 'neo4j'
 gem 'newrelic_rpm'
-gem 'therubyracer', '~> 0.10.2'
+gem 'therubyrhino'
 
 
 # Gems used only for assets and not required
@@ -17,17 +15,13 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.0'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
 
 group :development, :test do
-  gem "rspec-rails", "~> 2.8"
+  gem "rspec-rails", "~> 2.13.0"
   gem "capybara", "~> 1.1"
   gem "database_cleaner", "~> 0.8"
 end
@@ -43,7 +37,8 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn'
+#gem 'unicorn'
+gem 'trinidad'
 
 # Deploy with Capistrano
 # gem 'capistrano'
