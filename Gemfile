@@ -4,7 +4,7 @@ gem 'rails', '3.2.12'
 
 gem 'jdbc-sqlite3'
 gem 'activerecord-jdbcsqlite3-adapter'
-#gem 'neo4j'
+gem 'neo4j'
 gem 'newrelic_rpm'
 gem 'therubyrhino'
 

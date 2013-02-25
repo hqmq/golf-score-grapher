@@ -62,5 +62,7 @@ module Golf
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.neo4j.storage_path = "#{config.root}/db/neo4j-#{Rails.env}"
   end
 end
