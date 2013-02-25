@@ -8,7 +8,19 @@ describe Game do
     }.should_not raise_exception
   end
 
-  it "can be created from a CSV file"
+  it "can be created from a CSV file" do
+    csv_file = File.open(File.expand_path("spec/fixtures/rj1.csv"))
+    g = Game.build_from_csv(csv_file)
+    g.save
+    g.played_at.should == Time.zone.parse("2012-08-16 20:59:00")
+    g.course.name.should == "ron jon"
+    g.scores.size.should ==  4
+    me_score = g.scores.find do |score|
+      score.player.name == "Me"
+    end
+    me_score.total.should == 20
+    me_score.score_array.should == [2,4,2,3,1,3,1,2,2]
+  end
 
   it "a list of holes" do
     game = games(:g1)
