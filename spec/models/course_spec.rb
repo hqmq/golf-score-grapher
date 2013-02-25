@@ -13,6 +13,18 @@ describe Course do
     subject.calculated_par.should == [2,2,3,3,3,3,3,3,3,2,2,2,3,3,3,4,3,2]
   end
 
+  it "should be created by importing games" do
+    ["rj1.csv", "rj2.csv", "rj3.csv"].each do |basename|
+      csv_file = File.open(File.expand_path("spec/fixtures/#{basename}"))
+      g = Game.build_from_csv(csv_file)
+      g.save
+    end
+
+    course = Course.where(:name => "ron jon").first
+    course.recent_games.count.should == 3
+    course.calculated_par.should == [3, 3, 2, 3, 2, 3, 3, 3, 2]
+  end
+
   describe "#records" do
     it "should get a list of course record holders" do
       subject.records.size.should == 5
