@@ -1,9 +1,23 @@
 require 'spec_helper'
 
 describe Course do
-  fixtures :courses, :games, :players, :scores
+  subject{ Course.new(name: "Trafalga") }
 
-  subject{ courses(:c1) }
+  it "requires a name" do
+    c = Course.new
+    c.should_not be_valid
+    c.name = "Cascad - Arches"
+    c.should be_valid
+  end
+
+  it "can be found or created" do
+    trafalga = Course.find_or_create("Trafalga")
+    trafalga.id.should == subject.id
+
+    new_course = Course.find_or_create("new-course")
+    new_course.games.size.should == 0
+  end
+
   it "should get a list of recent games" do
     subject.recent_games.size.should == 2
     subject.recent_games.should == [games(:g2), games(:g1)]
@@ -34,7 +48,7 @@ describe Course do
     end
 
     it "should not fail for a course with no games" do
-      courses(:c2).records.should == []
+      Course.new(name: "ron jon").records.should == []
     end
   end
 end

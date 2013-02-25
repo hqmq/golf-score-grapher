@@ -1,7 +1,7 @@
-class Course < ActiveRecord::Base
-  attr_accessible :name
-
+class Course < Neo4j::Rails::Model
+  property :name, index: :exact
   validates_uniqueness_of :name
+  validates_presence_of :name
 
   has_many :games
 
