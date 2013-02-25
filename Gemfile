@@ -4,7 +4,7 @@ gem 'rails', '3.2.12'
 
 gem 'jdbc-sqlite3'
 gem 'activerecord-jdbcsqlite3-adapter'
-gem 'neo4j'
+gem 'neo4j', '~> 2.2.3'
 gem 'newrelic_rpm'
 gem 'therubyrhino'
 
@@ -19,6 +19,10 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+group :development do
+  gem 'neo4j-enterprise', '1.9.M03'
+end
 
 group :development, :test do
   gem "rspec-rails", "~> 2.13.0"
