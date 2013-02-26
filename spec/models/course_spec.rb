@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Course do
-  subject{ Course.new(name: "Trafalga") }
+  fixtures :courses, :games, :players, :scores
+  subject{ courses(:c1) }
 
   it "requires a name" do
     c = Course.new
@@ -15,11 +16,11 @@ describe Course do
     trafalga.id.should == subject.id
 
     new_course = Course.find_or_create("new-course")
-    new_course.games.size.should == 0
+    new_course.games.count.should == 0
   end
 
   it "should get a list of recent games" do
-    subject.recent_games.size.should == 2
+    subject.recent_games.count.should == 2
     subject.recent_games.should == [games(:g2), games(:g1)]
   end
 

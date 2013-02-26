@@ -62,8 +62,5 @@ module Golf
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
-    require 'neo4j/rails/ha_console/railtie' if Rails.env.development?
-    config.neo4j.storage_path = "#{config.root}/db/neo4j-#{Rails.env}" unless Rails.env.development?
   end
 end
