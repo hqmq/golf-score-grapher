@@ -2,11 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 
-gem 'jdbc-sqlite3'
-gem 'activerecord-jdbcsqlite3-adapter'
-gem 'newrelic_rpm'
-gem 'therubyrhino'
-
+gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,8 +32,7 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-#gem 'unicorn'
-gem 'trinidad'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
