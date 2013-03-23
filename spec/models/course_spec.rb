@@ -44,8 +44,12 @@ describe Course do
     it "should get a list of course record holders" do
       subject.records.size.should == 5
       top_record = CourseRecord.new(players(:p7), scores(:s5), games(:g1))
-      subject.records.first.should == top_record
-      subject.records.map{|r| r.total}.should == [46,46,46,49,49]
+      records = subject.records
+      records.first.should == top_record
+      records.each_with_index do |record, index|
+        record.rank.should == index + 1
+      end
+      subject.records.map{|r| r.total}.should == [45,46,46,49,49]
     end
 
     it "should not fail for a course with no games" do

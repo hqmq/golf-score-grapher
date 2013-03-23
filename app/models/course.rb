@@ -38,6 +38,6 @@ class Course < ActiveRecord::Base
     end
     
     @records.sort_by!{ |record| record.sort_value }
-    @records = @records.slice(0..4)
+    @records = @records.slice(0..4).to_enum.with_index.map { |record, idx| record.rank = idx+1; record  }
   end
 end

@@ -1,8 +1,10 @@
 class CourseRecord
+  attr_accessor :rank
   def initialize(player,score,game)
     @player = player
     @score = score
     @game = game
+    @rank = rank
   end
   
   def total
@@ -19,6 +21,10 @@ class CourseRecord
   
   def name
     @player.name
+  end
+
+  def player
+    @player
   end
   
   #some unique key that identifies this record (used for comparison)
