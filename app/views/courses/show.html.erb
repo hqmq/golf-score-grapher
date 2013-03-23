@@ -55,7 +55,7 @@
       <% @course.records.each do |course_record| %>
         <tr class="record">
           <td><%= course_record.total %></td>
-          <td><%= course_record.name %></td>
+          <td><%= link_to course_record.name, player_path(course_record.player) %></td>
           <td><%= course_record.date.strftime('%b %d %Y %l:%M %P') %>
         </tr>
       <% end %>

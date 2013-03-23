@@ -1,7 +1,7 @@
 <%= link_to 'Back', games_path %>
 <p>
   <b>Name:</b>
-  <%= @game.course.name %>
+  <%= link_to @game.course.name, course_path(@game.course) %>
 </p>
 
 <p>
@@ -23,7 +23,7 @@
     </tr>
     <% @game.player_scores.each_with_index do |player_score,idx| %>
     <tr style="color: <%= legend_colors[idx] %>">
-      <td><%= player_score[:player] %></td>
+      <td><%= link_to player_score[:player], player_path(player_score[:player_id]) %></td>
         <% player_score[:scores].each do |score|%>
           <td><%= score %></td>
         <% end %>

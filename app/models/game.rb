@@ -25,9 +25,7 @@ class Game < ActiveRecord::Base
   end
 
   def player_scores
-    scores.sort_by do |score|
-      score.total
-    end.map do |score| 
+    scores.sort_by(&:total).map do |score|
       score.to_basic_hash
     end
   end

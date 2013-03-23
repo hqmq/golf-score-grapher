@@ -26,6 +26,10 @@ class CourseRecord
   def player
     @player
   end
+
+  def course
+    @game.course
+  end
   
   #some unique key that identifies this record (used for comparison)
   def to_a
