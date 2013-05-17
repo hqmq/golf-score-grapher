@@ -49,11 +49,23 @@ class Game < ActiveRecord::Base
 
   def player_averages
     avg_vector = Vector.elements(running_average)
-    player_totals.map do |player_score|
+    list = player_totals
+    list << par_totals
+    list.map do |player_score|
       totals = Vector.elements(player_score[:totals])
       player_score[:averages] = (totals - avg_vector).to_a
       player_score
     end
+  end
+
+  def par_totals
+    total = 0
+    {
+      :player => 'par',
+      :player_id => 0,
+      :scores => course.calculated_par,
+      :totals => course.calculated_par.map{|score| total += score; total},
+    }
   end
   
   def holes

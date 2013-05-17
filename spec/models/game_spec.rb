@@ -57,11 +57,14 @@ describe Game do
   describe "#player_averages" do
   	subject{games(:g1).player_averages}
   	it "should return a standardized hash for each player" do
-  		subject.size.should == 5
+  		subject.size.should == 6
   		me_hash = subject.select{ |h| h[:player] == "Me" }
   		me_hash.size.should == 1
   		me_hash = me_hash.first
   		me_hash[:averages].should == [0,-1,-2,-3,-4,-4,-5,-2,-2,0,-1,-1,0,0,2,0,0,-1]
+      par = subject.last
+      par[:player].should == "par"
+      par[:averages].should == [0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 0, -1, -1, -1, -1, -1, -1, -1]
   	end
   end
 end
