@@ -13,8 +13,11 @@
 /db/production*
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+/log/*
 /tmp
+
+# do not version the generated assets
+public/assets/
 
 # Ignore Vagrant files
 /.vagrant
