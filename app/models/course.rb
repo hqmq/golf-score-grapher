@@ -17,13 +17,16 @@ class Course < ActiveRecord::Base
   end
   
   def calculated_par
-    all_scores = games.inject([]) do |list, game|
-      game.player_scores.inject(list) do |list, player_score|
-        list << player_score[:scores]
+    all_individual_scores = games.inject([]) do |list, game|
+      unless game.teams?
+        game.player_scores.inject(list) do |list, player_score|
+          list << player_score[:scores]
+        end
       end
+      list
     end
     
-    all_scores.transpose.map do |hole_scores|
+    all_individual_scores.transpose.map do |hole_scores|
       (hole_scores.map(&:to_f).inject(&:+) / hole_scores.size).round
     end
   end
@@ -32,6 +35,7 @@ class Course < ActiveRecord::Base
     return @records unless @records.nil?
     
     @records = games.inject([]) do |list, game|
+      next list if game.teams?
       game.scores.inject(list) do |list, score|
         list << CourseRecord.new( score.player, score, game )
       end

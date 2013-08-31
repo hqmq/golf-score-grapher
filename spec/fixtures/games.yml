@@ -16,5 +16,6 @@ g3:
 g4:
   id: 4
   course_id: 1
+  teams: true
   played_at: 2012-01-04 12:00:00
   num_holes: 18

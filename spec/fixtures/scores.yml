@@ -243,7 +243,6 @@ s11:
 s12:
   id: 12
   game_id: 4
-  team_game: true
   player_id: 7
   hole01: 1
   hole02: 1

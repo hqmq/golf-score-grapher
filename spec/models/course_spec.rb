@@ -20,8 +20,8 @@ describe Course do
   end
 
   it "should get a list of recent games" do
-    subject.recent_games.count.should == 2
-    subject.recent_games.should == [games(:g2), games(:g1)]
+    subject.recent_games.count.should == 3
+    subject.recent_games.should == [games(:g4), games(:g2), games(:g1)]
   end
 
   it "should calculate the par for all the holes" do
