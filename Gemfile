@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.14'
 
 gem 'sqlite3'
 
@@ -17,7 +17,7 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
-  gem "rspec-rails", "~> 2.13.0"
+  gem "rspec-rails", "~> 2.13"
   gem "capybara", "~> 1.1"
   gem "database_cleaner", "~> 0.8"
 end
