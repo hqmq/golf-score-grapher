@@ -19,3 +19,7 @@ p6:
 p7:
   id: 7
   name: lane
+p8:
+  id: 8
+  name: Me and bry
+  type: Team

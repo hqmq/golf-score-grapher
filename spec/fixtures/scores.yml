@@ -240,3 +240,26 @@ s11:
   hole16: 3
   hole17: 4
   hole18: 2
+s12:
+  id: 12
+  game_id: 4
+  team_game: true
+  player_id: 7
+  hole01: 1
+  hole02: 1
+  hole03: 1
+  hole04: 1
+  hole05: 1
+  hole06: 1
+  hole07: 1
+  hole08: 1
+  hole09: 1
+  hole10: 1
+  hole11: 1
+  hole12: 1
+  hole13: 1
+  hole14: 1
+  hole15: 1
+  hole16: 1
+  hole17: 1
+  hole18: 1

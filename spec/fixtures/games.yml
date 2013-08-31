@@ -13,3 +13,8 @@ g3:
   course_id: 2
   played_at: 2012-01-02 12:00:00
   num_holes: 9
+g4:
+  id: 4
+  course_id: 1
+  played_at: 2012-01-04 12:00:00
+  num_holes: 18
