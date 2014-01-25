@@ -15,6 +15,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'rspec-rails'
+gem 'better_receive'
+gem 'pry-nav'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
