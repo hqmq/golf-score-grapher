@@ -3,7 +3,10 @@ require 'spec_helper'
 describe ::Directory do
   subject { described_class.new(db) }
 
-  let(:player){ ::Player.new :guid => 'PLA-guid', :name => 'michael' }
+  let(:player){ ::Player.new(:guid => 'PLA-guid',
+    :name => 'michael',
+    :created_at => Time.current,
+    :updated_at => Time.current) }
 
   it "adds a player" do
     expect{
