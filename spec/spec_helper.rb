@@ -31,3 +31,8 @@ end
 def fixture(pathname)
   File.read( Rails.root.join('spec/fixtures', pathname) )
 end
+
+def pg_connection
+  ActiveRecord::Base.connection
+    .instance_variable_get('@connection')
+end

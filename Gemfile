@@ -5,6 +5,7 @@ gem 'rails', '4.0.2'
 
 gem 'pg'
 gem 'jbuilder', '~> 1.2'
+gem 'virtus'
 
 # UI gems
 gem 'sass-rails', '~> 4.0.0'
@@ -17,6 +18,7 @@ gem 'turbolinks'
 gem 'rspec-rails'
 gem 'better_receive'
 gem 'pry-nav'
+gem 'timecop'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
