@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ::Directory do
-  subject { described_class.new(pg_connection) }
+  subject { described_class.new(db) }
 
   let(:player){ ::Player.new :guid => 'PLA-guid', :name => 'michael' }
 
@@ -9,8 +9,7 @@ describe ::Directory do
     expect{
       subject.add(player)
     }.to change{
-      pg_connection.exec('SELECT COUNT(*) FROM players')
-        .first['count'].to_i
+      db[:players].count
     }.by(1)
   end
 

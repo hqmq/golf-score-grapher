@@ -51,9 +51,6 @@ GEM
     hike (1.2.3)
     i18n (0.6.9)
     ice_nine (0.11.0)
-    jbuilder (1.5.3)
-      activesupport (>= 3.0.0)
-      multi_json (>= 1.2.0)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -117,6 +114,12 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    sequel (4.6.0)
+    sequel-rails (0.9.1)
+      actionpack (>= 3.2.0)
+      activemodel
+      railties (>= 3.2.0)
+      sequel (>= 3.28, < 5.0)
     slop (3.4.7)
     sprockets (2.10.1)
       hike (~> 1.2)
@@ -156,7 +159,6 @@ PLATFORMS
 DEPENDENCIES
   better_receive
   coffee-rails (~> 4.0.0)
-  jbuilder (~> 1.2)
   jquery-rails
   pg
   pry-nav
@@ -164,6 +166,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
+  sequel-rails
   therubyracer
   timecop
   turbolinks

@@ -3,8 +3,11 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
+# Persistence gems
 gem 'pg'
-gem 'jbuilder', '~> 1.2'
+gem 'sequel-rails'
+
+# Domain libraries
 gem 'virtus'
 
 # UI gems
@@ -15,6 +18,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
 
+# Testing gems
 gem 'rspec-rails'
 gem 'better_receive'
 gem 'pry-nav'
