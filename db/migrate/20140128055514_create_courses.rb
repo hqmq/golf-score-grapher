@@ -6,5 +6,7 @@ Sequel.migration do
       Time :created_at
       Time :updated_at
     end
+
+    add_index :courses, :guid, :unique => true
   end
 end

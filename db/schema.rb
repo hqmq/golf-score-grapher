@@ -5,6 +5,8 @@ Sequel.migration do
       column :name, "text"
       column :created_at, "timestamp without time zone"
       column :updated_at, "timestamp without time zone"
+      
+      index [:guid], :unique=>true
     end
     
     create_table(:players) do
