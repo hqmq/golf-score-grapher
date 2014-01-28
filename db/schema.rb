@@ -1,28 +1,31 @@
-# encoding: UTF-8
-# This file is auto-generated from the current state of the database. Instead
-# of editing this file, please use the migrations feature of Active Record to
-# incrementally modify your database, and then regenerate this schema definition.
-#
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
-#
-# It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 20140126175129) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "players", id: false, force: true do |t|
-    t.string   "guid",       limit: 40
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+Sequel.migration do
+  change do
+    create_table(:courses) do
+      column :guid, "text"
+      column :name, "text"
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
+    end
+    
+    create_table(:players) do
+      column :guid, "text"
+      column :name, "text"
+      column :created_at, "timestamp without time zone"
+      column :updated_at, "timestamp without time zone"
+      
+      index [:guid], :unique=>true
+    end
+    
+    create_table(:schema_migrations) do
+      column :filename, "text", :null=>false
+      
+      primary_key [:filename]
+    end
   end
-
-  add_index "players", ["guid"], name: "index_players_on_guid", unique: true, using: :btree
-
+end
+Sequel.migration do
+  change do
+    self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20140126175129_create_players.rb')"
+    self << "INSERT INTO \"schema_migrations\" (\"filename\") VALUES ('20140128055514_create_courses.rb')"
+  end
 end
