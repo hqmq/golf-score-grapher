@@ -10,6 +10,10 @@ class PlayersController < ::ApplicationController
     head :created
   end
 
+  def show
+    @player = directory.lookup_by_guid(params[:id])
+  end
+
   private
 
   def player_params
