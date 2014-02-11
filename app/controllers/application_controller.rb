@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   def pg_connection
-    @pg_connection ||= ActiveRecord::Base.connection
-                        .instance_variable_get('@connection')
+    @pg_connection ||= Sequel::DATABASES.first
   end
 end
