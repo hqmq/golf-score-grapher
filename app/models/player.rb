@@ -1,13 +1,11 @@
 require 'securerandom'
 class Player
-  include Virtus.value_object
+  include Virtus.model
 
-  values do
-    attribute :guid, String
-    attribute :name, String
-    attribute :created_at, Time
-    attribute :updated_at, Time
-  end
+  attribute :guid, String, :default => ->(player, attr){ player.class.create_guid }
+  attribute :name, String
+  attribute :created_at, Time, :default => ->(player, attr){ Time.current }
+  attribute :updated_at, Time, :default => ->(player, attr){ Time.current }
 
   def self.create_guid
     "PLA-#{SecureRandom.uuid}"
