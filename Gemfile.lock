@@ -163,6 +163,7 @@ PLATFORMS
 DEPENDENCIES
   better_receive
   coffee-rails (~> 4.0.0)
+  equalizer
   jquery-rails
   pg
   pry-nav

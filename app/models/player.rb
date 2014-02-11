@@ -1,6 +1,7 @@
 require 'securerandom'
 class Player
   include Virtus.model
+  include Equalizer.new(:guid, :name, :created_at, :updated_at)
 
   attribute :guid, String, :default => ->(player, attr){ player.class.create_guid }
   attribute :name, String

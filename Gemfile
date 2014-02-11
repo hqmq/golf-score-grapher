@@ -9,6 +9,7 @@ gem 'pg'
 gem 'sequel-rails'
 
 # Domain libraries
+gem 'equalizer'
 gem 'virtus'
 
 # UI gems
