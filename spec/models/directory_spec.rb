@@ -21,4 +21,9 @@ describe ::Directory do
     lp = subject.lookup_by_guid(player.guid)
     expect(lp).to eq(player)
   end
+
+  it "autocompletes players with names and guids" do
+    michael = subject.by_partial_name("Mich").first
+
+  end
 end
