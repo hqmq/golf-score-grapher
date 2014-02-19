@@ -22,8 +22,11 @@ describe ::Directory do
     expect(lp).to eq(player)
   end
 
-  it "autocompletes players with names and guids" do
-    michael = subject.by_partial_name("Mich").first
-
+  describe "#by_partial_name" do
+    it "autocompletes players with names and guids" do
+      michael = subject.by_partial_name("Mich").first
+      expect(michael.name).to eq('Michael Ries')
+      expect(michael.guid).not_to be_nil
+    end
   end
 end
