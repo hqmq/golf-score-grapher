@@ -16,3 +16,7 @@
 body {
   padding-top: 50px;
 }
+
+body>div.container-fluid {
+  margin-left: 16px;
+}

@@ -1,4 +1,11 @@
 class PlayersController < ::ApplicationController
+  respond_to :json
+
+  def autocomplete
+    players = directory.by_partial_name(params[:id])
+    respond_with players
+  end
+
   def create
     player = Player.new(
       :guid => player_params[:player].fetch(:guid, Player.create_guid),
