@@ -2,8 +2,6 @@ require 'csv'
 require 'matrix'
 
 class Game < ActiveRecord::Base
-  attr_accessible :name, :played_at, :num_holes
-  
   belongs_to :course
   validates_presence_of [:played_at, :course, :scores]
   validates_uniqueness_of :played_at, :message => "duplicate value"

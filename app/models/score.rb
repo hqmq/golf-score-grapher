@@ -1,5 +1,4 @@
 class Score < ActiveRecord::Base
-  attr_accessible :hole01, :hole02, :hole03, :hole04, :hole05, :hole06, :hole07, :hole08, :hole09, :hole10, :hole11, :hole12, :hole13, :hole14, :hole15, :hole16, :hole17, :hole18
   belongs_to :game
   belongs_to :player
 
