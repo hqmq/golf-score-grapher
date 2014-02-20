@@ -1,42 +1,33 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
-gem 'rails', '3.2.14'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.2'
 
-gem 'sqlite3'
+# Persistence gems
+gem 'pg'
+gem 'sequel-rails'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'therubyracer'
-  gem 'bootstrap-sass', '~> 2.0'
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
+# Domain libraries
+gem 'equalizer'
+gem 'virtus'
 
+# UI gems
+gem 'sass-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
+gem 'turbolinks'
+gem 'rails-assets-bootstrap'
 
-group :development, :test do
-  gem "rspec-rails", "~> 2.13"
-  gem "capybara", "~> 1.1"
-  gem "database_cleaner", "~> 0.8"
+# Testing gems
+gem 'rspec-rails'
+gem 'better_receive'
+gem 'pry-nav'
+gem 'timecop'
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
 end
-
-group :test do
-  gem "cucumber-rails", "~> 1.3"
-end
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'

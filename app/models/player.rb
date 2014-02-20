@@ -1,33 +1,14 @@
-class Player < ActiveRecord::Base
-  attr_accessible :name
+require 'securerandom'
+class Player
+  include Virtus.model
+  include Equalizer.new(:guid, :name, :created_at, :updated_at)
 
-  validates_uniqueness_of :name
+  attribute :guid, String, :default => ->(player, attr){ player.class.create_guid }
+  attribute :name, String
+  attribute :created_at, Time, :default => ->(player, attr){ Time.current }
+  attribute :updated_at, Time, :default => ->(player, attr){ Time.current }
 
-  has_many :scores
-
-  def self.find_or_create(name)
-  	p = Player.find_by_name(name)
-  	return p if p
-  	Player.new(:name => name)
-  end
-
-  def course_records
-    @course_records ||= begin
-      courses = scores.map{|s| s.game.course }.uniq
-      records = courses.map{|c| c.records }.flatten
-      records = records.select{|record| record.player == self}
-    end
-  end
-
-  def points
-    @points ||= begin
-      p = scores.size
-      course_records.each do |rec|
-        p += 10 if rec.rank == 1
-        p += 5 if rec.rank == 2
-        p += 3 if rec.rank == 3
-      end
-      p
-    end
+  def self.create_guid
+    "PLA-#{SecureRandom.uuid}"
   end
 end

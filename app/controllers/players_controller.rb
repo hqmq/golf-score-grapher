@@ -1,13 +1,29 @@
-class PlayersController < ApplicationController
+class PlayersController < ::ApplicationController
+  respond_to :json
 
-  # GET /players/1
-  # GET /players/1.json
+  def autocomplete
+    players = directory.by_partial_name(params[:id])
+    respond_with players
+  end
+
+  def create
+    player = Player.new(
+      :guid => player_params[:player].fetch(:guid, Player.create_guid),
+      :name => player_params[:player][:name],
+      :created_at => Time.zone.now,
+      :updated_at => Time.zone.now,
+    )
+    directory.add(player)
+    head :created
+  end
+
   def show
-    @player = Player.find(params[:id])
+    @player = directory.lookup_by_guid(params[:id])
+  end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @player }
-    end
+  private
+
+  def player_params
+    params.permit :player => [:name, :guid]
   end
 end
