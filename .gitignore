@@ -11,6 +11,7 @@
 /db/*.sqlite3
 /db/neo4j*
 /db/production*
+/db/snapshot*
 
 # Ignore all logfiles and tempfiles.
 /log/*
