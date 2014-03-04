@@ -60,7 +60,7 @@ class Game < ActiveRecord::Base
     total = 0
     {
       :player => 'par',
-      :player_id => 0,
+      :player_id => 'par',
       :scores => course.calculated_par,
       :totals => course.calculated_par.map{|score| total += score; total},
     }
