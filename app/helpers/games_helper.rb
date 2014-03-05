@@ -2,7 +2,8 @@ module GamesHelper
   def linegraph_google(dom_id, game)
     data_grid = game.player_averages
       .map{ |ps| [ps[:player]].concat(ps[:averages]) }
-      .transpose.each_with_index{ |row, idx| row.unshift(idx) }
+      .transpose.each_with_index{ |row, idx|
+        row.unshift(idx == 0 ? "blank" : idx) }
     js = "
       <script type='text/javascript'>
         var d = $('\##{dom_id}');
