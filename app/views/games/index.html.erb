@@ -4,10 +4,8 @@
   <table class="span8">
     <thead>
       <tr>
-        <th>Course</th>
-        <th>When</th>
-        <th></th>
-        <th></th>
+        <th class="text-left">Course</th>
+        <th class="text-left">When</th>
       </tr>
     </thead>
     <tbody class="games">
@@ -15,20 +13,37 @@
       <tr class="game game-<%= game.id %>">
         <td class="name"><%= link_to game.course.name, course_path(game.course) %></td>
         <td class="played_at"><%= game.played_at.strftime('%b %d %Y %l:%M %P') %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     </tbody>
   </table>
 
-  <ul class="thumbnails">
-    <li class="span4">
-      <div class="thumbnail" id="filedrop">
-        <div class="center">
-          Drop Game File Here
+  <div class="span4">
+    <ul class="thumbnails">
+      <li class="span4">
+        <div class="thumbnail" id="filedrop">
+          <div class="center">
+            Drop Game File Here
+          </div>
         </div>
-      </div>
-    </li>
-  </ul>
+      </li>
+    </ul>
+
+    <h4>Most Awesome Players</h4>
+    <table class="span4">
+      <thead>
+        <tr>
+          <th class="text-left">Name</th>
+          <th class="text-left">Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @players.each do |player| %>
+          <tr>
+            <td><%= link_to player.name, player %></td>
+            <td><%= player.points %></td>
+          </tr>
+        <% end %>
+    </table>
+  </div>
 </div>
