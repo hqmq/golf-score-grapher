@@ -19,7 +19,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "cucumber-rails", "~> 1.3"
+  gem "cucumber-rails", "~> 1.3", :require => false
 end
 
 # To use ActiveModel has_secure_password

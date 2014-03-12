@@ -2,11 +2,12 @@ require 'csv'
 
 class GamesController < ApplicationController
   include GamesHelper
-  
+
   # GET /games
   # GET /games.json
   def index
-    @games = Game.order("played_at DESC")
+    @games = game_ledger.recent(20)
+    @players = directory.most_awesome(5)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,7 +30,7 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.build_from_csv(params[:file])
-    
+
     respond_to do |format|
       if @game.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
@@ -51,5 +52,11 @@ class GamesController < ApplicationController
       format.html { redirect_to games_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def game_ledger
+    @game_ledger ||= GameLedger.new
   end
 end
