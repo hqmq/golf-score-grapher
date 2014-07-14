@@ -11,6 +11,7 @@ gem 'sass-rails',   '~> 4.0'
 gem 'coffee-rails', '~> 4.0'
 gem 'uglifier', '>= 1.0.3'
 gem 'jquery-rails'
+gem 'skylight'
 
 group :development, :test do
   gem "rspec-rails", "~> 2.14"
