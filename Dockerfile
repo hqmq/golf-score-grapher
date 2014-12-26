@@ -1,4 +1,4 @@
-FROM phusion/passenger-ruby21:0.9.11
+FROM phusion/passenger-ruby21:0.9.14
 MAINTAINER Michael Ries <michael@riesd.com>
 
 # Setup Nginx
