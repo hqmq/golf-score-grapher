@@ -72,6 +72,9 @@ GEM
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     nokogiri (1.6.5-java)
+    oj (2.11.1)
+    rabl (0.11.5)
+      activesupport (>= 2.3.14)
     rack (1.6.0)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -155,6 +158,8 @@ DEPENDENCIES
   bootstrap-sass (~> 2.0)
   coffee-rails (~> 4.0)
   jquery-rails
+  oj
+  rabl
   rails (= 4.2.0)
   rspec-rails (~> 2.14)
   sass-rails (~> 4.0)

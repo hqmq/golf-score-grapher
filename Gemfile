@@ -4,7 +4,8 @@ gem 'rails', '4.2.0'
 
 gem 'sqlite3'
 
-
+gem 'rabl'
+gem 'oj'
 gem 'therubyracer'
 gem 'bootstrap-sass', '~> 2.0'
 gem 'sass-rails',   '~> 4.0'
