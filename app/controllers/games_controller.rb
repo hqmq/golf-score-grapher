@@ -15,6 +15,10 @@ class GamesController < ApplicationController
     end
   end
 
+  def recent
+    @games = game_ledger.recent(20)
+  end
+
   # GET /games/1
   # GET /games/1.json
   def show

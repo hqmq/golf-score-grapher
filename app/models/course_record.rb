@@ -10,6 +10,10 @@ class CourseRecord
   def total
     @score.total
   end
+
+  def score
+    @score
+  end
   
   def score_array
     @score.score_array
