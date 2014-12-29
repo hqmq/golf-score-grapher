@@ -2,6 +2,7 @@ Golf::Application.routes.draw do
   scope :constraints => { :format => :html } do
     root :to => 'home#index'
     get 'players/:id', :to => 'home#index'
+    get 'games/:id', :to => 'home#index'
   end
 
   scope :constraints => { :format => :json } do

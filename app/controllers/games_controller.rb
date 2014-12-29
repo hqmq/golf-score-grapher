@@ -19,15 +19,8 @@ class GamesController < ApplicationController
     @games = game_ledger.recent(20)
   end
 
-  # GET /games/1
-  # GET /games/1.json
   def show
     @game = Game.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @game }
-    end
   end
 
   # POST /games
