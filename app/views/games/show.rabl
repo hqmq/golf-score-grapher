@@ -7,3 +7,7 @@ child(:scores, :object_root => false) do
   node(:holes){ |score| score.score_array }
   node(:name){ |score| score.player.name }
 end
+child({:player_averages => :player_averages}, :object_root => false) do
+  node(:player){ |p| p[:player] }
+  node(:averages){ |p| p[:averages] }
+end
