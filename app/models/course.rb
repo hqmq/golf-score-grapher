@@ -5,9 +5,9 @@ class Course < ActiveRecord::Base
   has_many :games
 
   def self.find_or_create(name)
-  	c = Course.find_by_name(name)
-  	return c if c
-  	Course.new(:name => name)
+    c = Course.find_by_name(name)
+    return c if c
+    Course.new(:name => name)
   end
   
   def recent_games
@@ -17,8 +17,8 @@ class Course < ActiveRecord::Base
   def calculated_par
     all_individual_scores = games.inject([]) do |list, game|
       unless game.teams?
-        game.player_scores.inject(list) do |list, player_score|
-          list << player_score[:scores]
+        game.scores.inject(list) do |list, score|
+          list << score.score_array
         end
       end
       list
