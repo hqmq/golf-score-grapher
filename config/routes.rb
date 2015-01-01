@@ -1,6 +1,7 @@
 Golf::Application.routes.draw do
+  root :to => 'home#index'
+
   scope :constraints => { :format => :html } do
-    root :to => 'home#index'
     get 'players/:id', :to => 'home#index'
     get 'games/:id', :to => 'home#index'
   end
