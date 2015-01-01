@@ -4,9 +4,9 @@ class Player < ActiveRecord::Base
   has_many :scores
 
   def self.find_or_create(name)
-  	p = Player.find_by_name(name)
-  	return p if p
-  	Player.new(:name => name)
+    p = Player.find_by_name(name)
+    return p if p
+    Player.new(:name => name)
   end
 
   def course_records

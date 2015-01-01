@@ -1,9 +1,18 @@
 Golf::Application.routes.draw do
-  resources :courses
+  root :to => 'home#index'
 
-  resources :games
+  scope :constraints => { :format => :html } do
+    get 'players/:id', :to => 'home#index'
+    get 'games/:id', :to => 'home#index'
+  end
 
-  resources :players
+  scope :constraints => { :format => :json } do
+    resources :courses
+    resources :games
+    get 'recent_games', :to => 'games#recent'
+    resources :players
+    get 'awesomest_players', :to => 'players#awesomest'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -54,7 +63,6 @@ Golf::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'games#index'
 
   # See how all your routes lay out with "rake routes"
 

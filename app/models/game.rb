@@ -22,50 +22,6 @@ class Game < ActiveRecord::Base
     game
   end
 
-  def player_scores
-    scores.sort_by(&:total).map do |score|
-      score.to_basic_hash
-    end
-  end
-
-  def player_totals
-    player_scores.map do |player_score|
-      running_total = 0
-      player_score[:totals] = player_score[:scores].map{ |score| running_total += score; running_total }
-      player_score
-    end
-  end
-
-  def running_average
-    totals = player_totals
-    holes.map do |hole_num| 
-      totals.map do |player_total|
-        player_total[:totals][hole_num-1]
-      end.inject(0){|sum, score| sum += score } / totals.size
-    end
-  end
-
-  def player_averages
-    avg_vector = Vector.elements(running_average)
-    list = player_totals
-    list << par_totals
-    list.map do |player_score|
-      totals = Vector.elements(player_score[:totals])
-      player_score[:averages] = (totals - avg_vector).to_a
-      player_score
-    end
-  end
-
-  def par_totals
-    total = 0
-    {
-      :player => 'par',
-      :player_id => 'par',
-      :scores => course.calculated_par,
-      :totals => course.calculated_par.map{|score| total += score; total},
-    }
-  end
-  
   def holes
     1.upto(num_holes).to_a
   end
