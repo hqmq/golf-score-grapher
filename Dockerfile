@@ -8,7 +8,8 @@ RUN rm -f /etc/nginx/sites-enabled/default && rm -f /etc/service/nginx/down && a
 # Prod Mode
 ADD . /home/app/golf
 RUN chown app:app -R /home/app
-VOLUME /home/app/db
+VOLUME /home/app/golf/db
+VOLUME /home/app/golf/public
 
 WORKDIR /home/app/golf
 USER root
