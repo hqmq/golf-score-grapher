@@ -8,7 +8,6 @@
 /.bundle
 
 # Ignore the default SQLite database.
-/db/index.html
 /db/*.sqlite3
 /db/neo4j*
 /db/production*
@@ -20,6 +19,7 @@
 /tmp
 
 # do not version the generated assets
+/public/index.html
 public/assets/
 
 # Ignore Vagrant files
