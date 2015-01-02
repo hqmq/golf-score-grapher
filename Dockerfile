@@ -12,6 +12,6 @@ VOLUME /home/app/db
 
 WORKDIR /home/app/golf
 USER root
-RUN bundle install && bundle exec rake assets:precompile
+RUN bundle install
 
 CMD /sbin/my_init
